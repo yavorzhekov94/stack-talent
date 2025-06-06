@@ -1,6 +1,15 @@
-import './bootstrap';
-import '../sass/app.scss';
-import * as bootstrap from 'bootstrap';
-// ако има jQuery:
 import $ from 'jquery';
-window.$ = $;
+window.$ = window.jQuery = $;
+
+import 'jquery.easing';
+import 'jquery-waypoints/waypoints.min.js';
+import WOW from 'wow.js';
+import 'owl.carousel';
+
+new WOW().init();
+
+import '../scss/app.scss';
+
+import './main.js';
+
+import './bootstrap';
