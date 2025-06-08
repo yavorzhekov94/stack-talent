@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Stack Talents</title>
+    <title>{{ config('app.name') }}</title>
+    <link href="{{ asset('images/favicon.ico') }}" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/css/owl.carousel.min.css') }}">
