@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/css/owl.theme.green.min.css') }}">
-    @vite(['resources/scss/app.scss'])
+    @vite(['resources/js/app.js', 'resources/scss/app.scss'])
 </head>
 <body>
     <div class="container-xxl bg-white p-0">
