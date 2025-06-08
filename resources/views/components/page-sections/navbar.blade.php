@@ -7,10 +7,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <x-navbar-link href="/" :active="request()->is('/')">Home</x-navbar-link>
-            <x-navbar-link href="/about" :active="request()->is('/about')">About</x-navbar-link>
-            <x-navbar-link href="/jobs" :active="request()->is('/jobs')">Jobs</x-navbar-link>
-            <x-navbar-link href="/contact" :active="request()->is('/contact')">Contact</x-navbar-link>
+            <x-navbar-link href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-navbar-link>
+            <x-navbar-link href="{{ route('about') }}" :active="request()->routeIs('about')">About</x-navbar-link>
+            <x-navbar-link href="{{ route('jobs') }}" :active="request()->routeIs('jobs')">Jobs</x-navbar-link>
+            <x-navbar-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">Contact</x-navbar-link>
         </div>
         <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
     </div>
