@@ -1,0 +1,18 @@
+.btn.dropdown-toggle.rounded-circle::after {
+    display: none !important;
+}
+
+.btn-user-icon {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    i {
+        color: #000;
+        font-size: 22px;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
