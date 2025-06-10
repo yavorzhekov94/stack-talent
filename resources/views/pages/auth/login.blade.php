@@ -10,18 +10,9 @@
 
             <div class="text-center mb-3 text-muted">or</div>
 
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-
-                <div class="mb-3">
-                    <label for="email" class="form-label text-dark">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" required autofocus>
-                </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label text-dark">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
+            <x-forms.form method="PATCH" action="{{ route('login') }}">
+                <x-forms.input label="Email" name="email" id="email" type="email" required autofocus />
+                <x-forms.input label="Password" name="password" id="password" type="password" required />
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="form-check">
@@ -32,7 +23,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
-            </form>
+            </x-forms.form>
 
             <div class="text-center mt-4">
                 <small class="text-muted">Don't have an account?</small>
