@@ -2,16 +2,16 @@
 
 @php
     $defaults = [
-        'type' => 'text',
+        'type' => 'checkbox',
         'id' => $name,
         'name' => $name,
-        'class' => 'form-control',
         'value' => old($name)
     ];
 
 @endphp
-
-<x-forms.field :$label :$name >
+<div class="form-check">
     <input {{ $attributes->merge($defaults) }}>
-</x-forms.field>
+    <x-forms.label class="form-check-label text-muted" :$label :$name  />
+</div>
+
 

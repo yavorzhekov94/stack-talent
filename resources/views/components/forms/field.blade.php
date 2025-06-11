@@ -2,7 +2,7 @@
 
 <div class="mb-3">
     @if ($label)
-        <x-forms.label :$name :$label />
+        <x-forms.label :$name :$label/>
     @endif
 
     {{ $slot }}

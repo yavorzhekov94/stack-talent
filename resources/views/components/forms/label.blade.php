@@ -1,3 +1,3 @@
-@props(['name', 'label'])
+@props(['name', 'label', 'class' => 'form-label text-dark'])
 
-<label class="form-label text-dark" for="{{ $name }}">{{ $label }}</label>
+<label class="{{ $attributes->merge(['class' => $class]) }}" for="{{ $name }}">{{ $label }}</label>

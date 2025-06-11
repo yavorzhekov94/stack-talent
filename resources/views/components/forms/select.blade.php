@@ -2,16 +2,15 @@
 
 @php
     $defaults = [
-        'type' => 'text',
         'id' => $name,
         'name' => $name,
-        'class' => 'form-control',
-        'value' => old($name)
+        'class' => 'form-select'
     ];
-
 @endphp
 
 <x-forms.field :$label :$name >
-    <input {{ $attributes->merge($defaults) }}>
+    <select {{ $attributes->merge($defaults) }}>
+        {{ $slot }}
+    </select>
 </x-forms.field>
 
