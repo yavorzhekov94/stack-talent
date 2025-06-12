@@ -12,3 +12,4 @@ Route::view('/jobs', 'pages.jobs-listing')->name('jobs');;
 //Login and Registration
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');

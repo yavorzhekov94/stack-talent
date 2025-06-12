@@ -12,7 +12,7 @@
             <div class="text-center mb-3 text-muted">or</div>
 
             {{-- Laravel Register Form --}}
-            <x-forms.form method="POST" action="{{ route('register') }}">
+            <x-forms.form method="POST" action="{{ route('register.store') }}">
 
                 <div class="row">
                     <x-forms.input label="First Name" name="first_name" required />
@@ -22,9 +22,10 @@
 
                 <div class="row">
                     <x-forms.input label="Password" name="password" type="password" required />
+                    <x-forms.input label="Password Confirm" name="password_confirmation" type="password" />
                 </div>
 
-                <x-forms.select label="User Type" name="type" required>
+                <x-forms.select label="User Type" name="user_type" required>
                     <option value="employee">Employee</option>
                     <option value="employer">Employer</option>
                 </x-forms.select>

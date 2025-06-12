@@ -1,4 +1,15 @@
 <x-layout>
+    @if (session('status'))
+        <x-alert type="success">
+            {{ session('status') }}
+        </x-alert>
+    @endif
+
+    @if (session('error'))
+        <x-alert type="danger">
+            {{ session('error') }}
+        </x-alert>
+    @endif
     <div class="container-fluid bg-light min-vh-100 d-flex align-items-center justify-content-center">
         <div class="login-card shadow-sm bg-white p-4 p-md-5 rounded">
             <x-page-heading>Login</x-page-heading>
