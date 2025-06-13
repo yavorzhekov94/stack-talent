@@ -10,6 +10,11 @@ Route::view('/contact', 'pages.contact')->name('contact');;
 Route::view('/jobs', 'pages.jobs-listing')->name('jobs');;
 
 //Login and Registration
-Route::get('/login', [SessionController::class, 'create'])->name('login');
-Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [SessionController::class, 'create'])->name('login');
+    Route::post('/login', [SessionController::class, 'store'])
+        ->name('login.store')
+        ->middleware('throttle:5,1');
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
+});

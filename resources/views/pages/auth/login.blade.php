@@ -21,7 +21,7 @@
 
             <div class="text-center mb-3 text-muted">or</div>
 
-            <x-forms.form method="POST" action="{{ route('login') }}">
+            <x-forms.form method="POST" action="{{ route('login.store') }}">
                 <x-forms.input label="Email" name="email" id="email" type="email" required autofocus />
                 <x-forms.input label="Password" name="password" id="password" type="password" required />
                 <div class="d-flex justify-content-between align-items-center mb-3">
