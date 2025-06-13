@@ -1,3 +1,6 @@
+@php
+ use Illuminate\Support\Str;
+@endphp
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
     <a href="/" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
         <h1 class="m-0 text-primary">StackTalents</h1>
@@ -16,6 +19,11 @@
             <button class="btn-user-icon rounded-circle d-flex align-items-center justify-content-center"
                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person"></i>
+                @auth
+                    <span class="name d-none d-md-inline text-dark ms-2">
+                        {{ Str::ucfirst(auth()->user()->first_name) }}
+                    </span>
+                @endauth
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 @guest
@@ -24,7 +32,11 @@
                 @endguest
                 @auth
                     <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                    <li>
+                        <x-forms.form method="DELETE" action="{{ route('logout') }}">
+                            <x-forms.button class="dropdown-item">Log Out</x-forms.button>
+                        </x-forms.form>
+                    </li>
                 @endauth
             </ul>
         </div>
