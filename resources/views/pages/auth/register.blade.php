@@ -2,12 +2,8 @@
     <div class="container-fluid bg-light min-vh-100 d-flex align-items-center justify-content-center">
         <div class="register-card shadow-sm bg-white p-4 p-md-5 rounded">
             <x-page-heading>Create Your Account</x-page-heading>
-
             {{-- Google Register --}}
-            <a href="#" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2 mb-3">
-                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Icon" width="20" height="20">
-                <span>Sign up with Google</span>
-            </a>
+            <x-google-link />
 
             <div class="text-center mb-3 text-muted">or</div>
 

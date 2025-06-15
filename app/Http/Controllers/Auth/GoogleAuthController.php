@@ -18,7 +18,7 @@ class GoogleAuthController extends Controller
             $user = User::where('email', $googleUser->email)->first();
 
             if (!$user) {
-                User::create([
+                $user = User::create([
                     'email' => $googleUser->email,
                     'first_name' => $googleUser->name,
                     'last_name' => $googleUser->name,
@@ -32,7 +32,7 @@ class GoogleAuthController extends Controller
         } catch (\Exception $e) {
 
             return redirect()
-                    ->rouete('login')
+                    ->route('login')
                     ->withErrors(['google_error' => 'Login with Google failed.']);
         }
     }

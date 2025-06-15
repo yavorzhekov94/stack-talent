@@ -18,11 +18,15 @@ Route::middleware('guest')->group(function () {
         ->middleware('throttle:5,1');
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
+
+    //Google Auth
+    Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])
+        ->name('google.auth.redirect');
+    Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])
+        ->name('google.auth.callback');
 });
 Route::delete('/logout', [SessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-//Google Auth
-Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.redirect');
-Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+
