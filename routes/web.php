@@ -24,6 +24,10 @@ Route::middleware('guest')->group(function () {
         ->name('google.auth.redirect');
     Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])
         ->name('google.auth.callback');
+    Route::get('/auth/google/select-user-type', [GoogleAuthController::class, 'showUserTypeForm'])
+        ->name('auth.google.select-user-type');
+    Route::post('/auth/google/complete-registration', [GoogleAuthController::class, 'completeRegistration'])
+        ->name('auth.google.complete-registration');
 });
 Route::delete('/logout', [SessionController::class, 'destroy'])
     ->middleware('auth')

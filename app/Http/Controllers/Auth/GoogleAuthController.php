@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
@@ -17,17 +20,26 @@ class GoogleAuthController extends Controller
             $googleUser = Socialite::driver('google')->stateless()->user();
             $user = User::where('email', $googleUser->email)->first();
 
-            if (!$user) {
-                $user = User::create([
-                    'email' => $googleUser->email,
-                    'first_name' => $googleUser->name,
-                    'last_name' => $googleUser->name,
-                    'google_id' => $googleUser->id,
-                ]);
+            if ($user) {
+                Auth::login($user);
+                return redirect()->intended(route('home'));
             }
 
-            Auth::login($user);
-            return redirect()->intended(route('home'));
+            $first_name = explode(' ', $googleUser->name)[0];
+            $last_name = explode(' ', $googleUser->name)[1];
+
+            session([
+                'google_user' => [
+                    'email' => $googleUser->email,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'google_id' => $googleUser->id,
+                    'password' => Hash::make(Str::random(16)),
+                ]
+            ]);
+
+            return redirect()->route('auth.google.select-user-type');
+
 
         } catch (\Exception $e) {
 
@@ -40,5 +52,19 @@ class GoogleAuthController extends Controller
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
+    }
+
+    public function showUserTypeForm()
+    {
+        if (!session()->has('google_user')) {
+            return redirect()->route('login');
+        }
+
+        return view('pages.auth.google-user-type');
+    }
+
+    public function completeRegistration()
+    {
+
     }
 }
