@@ -63,8 +63,28 @@ class GoogleAuthController extends Controller
         return view('pages.auth.google-user-type');
     }
 
-    public function completeRegistration()
+    public function completeRegistration(Request $request)
     {
 
+        $attributes = $request->validate([
+            'user_type' => ['required', 'in:employee,employer'],
+        ]);
+
+        $data = session('google_user');
+
+        $user = User::create([
+            'email' => $data['email'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'google_id' => $data['google_id'],
+            'password' => $data['password'],
+            'user_type' => $attributes['user_type'],
+        ]);
+
+        session()->forget('google_user');
+
+        Auth::login($user);
+
+        return redirect()->route('home');
     }
 }

@@ -1,10 +1,15 @@
 <x-layout>
-    <form method="POST" action="{{ route('auth.google.complete-registration') }}">
-        @csrf
-        <label>Избери тип потребител:</label><br>
-        <input type="radio" name="user_type" value="employee" required> Служител<br>
-        <input type="radio" name="user_type" value="employer" required> Работодател<br>
+    <div class="container min-vh-100 d-flex justify-content-center align-items-center">
+        <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
+            <x-page-heading> Choose User Type</x-page-heading>
 
-        <button type="submit">Завърши регистрацията</button>
-    </form>
+            <x-forms.form method="POST" action="{{ route('auth.google.complete-registration') }}">
+                <div class="mb-3">
+                    <x-forms.radio label="Employee" name="user_type" id="employee" />
+                    <x-forms.radio label="Employer" name="user_type" id="employer" />
+                </div>
+                <button>Register</button>
+            </x-forms.form>
+        </div>
+    </div>
 </x-layout>
