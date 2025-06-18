@@ -79,6 +79,7 @@ class GoogleAuthController extends Controller
             'google_id' => $data['google_id'],
             'password' => $data['password'],
             'user_type' => $attributes['user_type'],
+            'email_verified_at' => now()
         ]);
 
         session()->forget('google_user');

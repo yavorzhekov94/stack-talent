@@ -1,5 +1,5 @@
 @props(['error' => false])
 
 @if ($error)
-    <p>{{ $error }}</p>
+    <p class="text-danger small mt-1">{{ $error }}</p>
 @endif

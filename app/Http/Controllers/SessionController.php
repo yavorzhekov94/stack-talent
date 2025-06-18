@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,12 +17,22 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         try {
+            $user = User::where('email', $request->email)->first();
+
+            if ($user && $user->google_id) {
+                throw ValidationException::withMessages([
+                    'email' => __('custom.google_login_only'),
+                ]);
+            }
+
             $attributes = $request->validate([
                 'email' => ['required', 'email'],
                 'password' => ['required'],
             ]);
 
-            if (!Auth::attempt($attributes)) {
+            $remember = $request->filled('remember');
+
+            if (!Auth::attempt($attributes, $remember)) {
                 throw ValidationException::withMessages([
                     'email' => 'Sorry, those credentials do not match.',
                 ]);
