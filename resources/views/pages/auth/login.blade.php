@@ -20,8 +20,8 @@
                 <x-forms.input label="Email" name="email" id="email" type="email" required autofocus />
                 <x-forms.input label="Password" name="password" id="password" type="password" required />
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <x-forms.checkbox  label="Remember me" name="remember"/>
-                    <a href="#" class="text-decoration-none small">Forgot Password?</a>
+                    <x-forms.checkbox label="Remember me" name="remember"/>
+                    <a href="{{ route('forgot-password.create') }}" class="text-decoration-none small">Forgot Password?</a>
                 </div>
                 <x-forms.button>Login</x-forms.button>
             </x-forms.form>
