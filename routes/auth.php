@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\PasswordResetLinkController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
@@ -27,6 +28,8 @@ Route::middleware('guest')->group(function () {
     //Forgot and Reset password
     Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('forgot-password.create');
     Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('forgot-password.store');
+    Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+    Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 
 });
 
