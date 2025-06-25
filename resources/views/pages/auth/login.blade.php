@@ -1,4 +1,7 @@
 <x-layout>
+    @push('scripts')
+        @vite(['resources/js/pages/auth-toggle-password.js'])
+    @endpush
     @if (session('status'))
         <x-alert type="success">
             {{ session('status') }}
@@ -18,7 +21,7 @@
 
             <x-forms.form method="POST" action="{{ route('login.store') }}">
                 <x-forms.input label="Email" name="email" id="email" type="email" required autofocus />
-                <x-forms.input label="Password" name="password" id="password" type="password" required />
+                <x-forms.input label="Password" name="password" type="password" required />
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <x-forms.checkbox label="Remember me" name="remember"/>
                     <a href="{{ route('forgot-password.create') }}" class="text-decoration-none small">Forgot Password?</a>

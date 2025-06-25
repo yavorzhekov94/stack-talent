@@ -15,7 +15,7 @@ class NewPasswordController extends Controller
     }
 
     public function store(Request $request){
-       
+
         $request->validate([
             'email' => ['required', 'email'],
             'token' => ['required'],
