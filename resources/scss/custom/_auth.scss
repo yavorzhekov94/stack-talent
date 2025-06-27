@@ -16,29 +16,32 @@
     }
 }
 
-.position-relative {
-    .toggle-password {
-        position: absolute;
-        top: 50%;
-        right: 1rem;
-        transform: translateY(-50%);
-        background: transparent;
-        border: none;
-        padding: 0;
-        color: #6c757d;
-        z-index: 2;
-
-        i {
-            font-size: 1.1rem;
-        }
-
+.input-group {
+    .form-control {
         &:focus {
-            outline: none;
-            box-shadow: none;
+            + .btn,
+            ~ .btn {
+                z-index: 2;
+                border-left: none;
+            }
         }
     }
 
-    input[type="password"] {
-        padding-right: 2.5rem;
+    .btn {
+        z-index: 1;
+        border: 1px solid #ced4da;
+        border-left: none;
+        background-color: #fff;
+
+        i {
+            pointer-events: none;
+            user-select: none;
+        }
+    }
+
+    &:focus-within {
+        .btn {
+            z-index: 2;
+        }
     }
 }

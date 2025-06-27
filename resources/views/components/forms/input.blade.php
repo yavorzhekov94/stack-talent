@@ -11,13 +11,12 @@
 @endphp
 
 <x-forms.field :$label :$name >
-    <input type="{{ $type }}" {{ $attributes->merge($defaults) }}>
+    <div class="input-group">
+        <input class="form-control" type="{{ $type }}" {{ $attributes->merge($defaults) }}>
 
-    @if($type === 'password')
-        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="password">
-            <i class="bi bi-eye"></i>
-        </button>
-    @endif
-
+        @if($type === 'password')
+            <x-button-eye :$name />
+        @endif
+    </div>
 </x-forms.field>
 

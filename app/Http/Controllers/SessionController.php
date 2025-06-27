@@ -34,7 +34,7 @@ class SessionController extends Controller
 
             if (!Auth::attempt($attributes, $remember)) {
                 throw ValidationException::withMessages([
-                    'email' => 'Sorry, those credentials do not match.',
+                    'email' => __('custom.email_credentials_not_match'),
                 ]);
             }
 
@@ -43,7 +43,7 @@ class SessionController extends Controller
 
         } catch (ThrottleRequestsException $e) {
             return back()->withErrors([
-                'email' => 'Too many login attempts. Please try again in a minute.'
+                'email' => __('custom.email_to_many_attemps'),
             ]);
         }
     }

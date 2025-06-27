@@ -1,4 +1,9 @@
 <x-layout>
+    @if ($errors->has('email'))
+        <div class="alert alert-danger">
+            {{ $errors->first('email') }}
+        </div>
+    @endif
     <div class="container-fluid bg-light min-vh-100 d-flex align-items-center justify-content-center">
         <div class="register-card shadow-sm bg-white p-4 p-md-5 rounded">
             <x-page-heading>Forgot Password</x-page-heading>
