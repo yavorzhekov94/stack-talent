@@ -29,5 +29,6 @@
     <script src="{{ asset('vendor/js/wow.min.js') }}"></script>
     <script src="{{ asset('vendor/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('vendor/js/main.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>

@@ -1,0 +1,38 @@
+<x-layout>
+    @push('scripts')
+        @vite(['resources/js/pages/auth-toggle-password.js'])
+    @endpush
+    @if (session('status'))
+        <x-alert type="success">
+            {{ session('status') }}
+        </x-alert>
+    @endif
+
+    @if (session('error'))
+        <x-alert type="danger">
+            {{ session('error') }}
+        </x-alert>
+    @endif
+    <div class="container-fluid bg-light min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="login-card shadow-sm bg-white p-4 p-md-5 rounded">
+            <x-page-heading>Login</x-page-heading>
+            <x-google-link />
+            <div class="text-center mb-3 text-muted">or</div>
+
+            <x-forms.form method="POST" action="{{ route('login.store') }}">
+                <x-forms.input label="Email" name="email" id="email" type="email" required autofocus />
+                <x-forms.input label="Password" name="password" type="password" required />
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <x-forms.checkbox label="Remember me" name="remember"/>
+                    <a href="{{ route('forgot-password.create') }}" class="text-decoration-none small">Forgot Password?</a>
+                </div>
+                <x-forms.button>Login</x-forms.button>
+            </x-forms.form>
+
+            <div class="text-center mt-4">
+                <small class="text-muted">Don't have an account?</small>
+                <a href="{{ route('register') }}" class="text-primary text-decoration-none">Register</a>
+            </div>
+        </div>
+    </div>
+</x-layout>
