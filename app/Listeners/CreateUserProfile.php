@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Listeners;
+
+use App\Events\UserRegistered;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class CreateUserProfile
+{
+    /**
+     * Create the event listener.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     */
+    public function handle(UserRegistered $event): void
+    {
+        $user = $event->user;
+
+        if ($user->user_type === 'employee') {
+            $user->employee()->create();
+        }
+
+        if ($user->user_type === 'employer') {
+            $user->employer()->create();
+        }
+    }
+}
