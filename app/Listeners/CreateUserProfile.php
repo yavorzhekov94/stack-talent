@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\UserRegistered;
+use App\Events\UserProfileCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -19,7 +19,7 @@ class CreateUserProfile
     /**
      * Handle the event.
      */
-    public function handle(UserRegistered $event): void
+    public function handle(UserProfileCreated $event): void
     {
         $user = $event->user;
 

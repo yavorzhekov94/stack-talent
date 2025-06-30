@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserProfileCreated;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -18,7 +18,7 @@ class GoogleAuthController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->stateless()->user();
-            $user = User::where('email', $googleUser->email)->first();
+            $user = User::where('google_id', $googleUser->id)->first();
 
             if ($user) {
                 Auth::login($user);
@@ -82,6 +82,7 @@ class GoogleAuthController extends Controller
             'email_verified_at' => now()
         ]);
 
+        event(new UserProfileCreated($user));
         session()->forget('google_user');
 
         Auth::login($user);

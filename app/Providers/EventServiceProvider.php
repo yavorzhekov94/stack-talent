@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\UserProfileCreated;
 use App\Events\UserRegistered;
 use App\Listeners\CreateUserProfile;
 use App\Listeners\SendWelcomeEmail;
@@ -12,8 +13,10 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         UserRegistered::class => [
             SendWelcomeEmail::class,
-            CreateUserProfile::class,
         ],
+        UserProfileCreated::class => [
+            CreateUserProfile::class,
+        ]
     ];
     /**
      * Register services.
