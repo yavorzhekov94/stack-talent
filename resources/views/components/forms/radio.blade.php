@@ -8,6 +8,7 @@
         'value' => $id
     ];
 
+    $name = $id;
 @endphp
 <div class="form-check">
     <input {{ $attributes->merge($defaults) }}>
