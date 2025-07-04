@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profiles;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class EmployeeProfileController extends Controller
 {
@@ -10,7 +11,8 @@ class EmployeeProfileController extends Controller
         return view('pages.profiles.employee-profile');
     }
 
-    public function store() {
+    public function updateBasic(Request $request)
+    {
 
     }
 }

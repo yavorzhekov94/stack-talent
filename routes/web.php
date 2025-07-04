@@ -10,12 +10,12 @@ Route::view('/contact', 'pages.contact')->name('contact');
 Route::view('/jobs', 'pages.jobs-listing')->name('jobs');
 
 //User profiles
-Route::prefix('employee')->name('employee.')->group(function () {
+Route::prefix('employee')->name('employee.')->middleware('auth')->group(function () {
     Route::get('/profile', [EmployeeProfileController::class, 'create'])->name('profile');
-    Route::post('/profile', [EmployeeProfileController::class, 'store'])->name('profile.store');
+    Route::patch('/profile/basic', [EmployeeProfileController::class, 'updateBasic'])->name('profile.update.basic');
 });
 
-Route::prefix('employer')->name('employer.')->group(function () {
+Route::prefix('employer')->name('employer.')->middleware('auth')->group(function () {
     Route::get('/profile', [EmployerProfileController::class, 'create'])->name('profile');
     Route::post('/profile', [EmployerProfileController::class, 'store'])->name('profile.store');
 });
