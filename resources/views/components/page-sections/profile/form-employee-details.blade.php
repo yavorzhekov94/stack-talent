@@ -50,7 +50,7 @@
         <x-forms.input
             label="City"
             name="city"
-            :value="old('city', $employee_profile->state)"
+            :value="old('city', $employee_profile->city)"
         />
     </x-row>
 
@@ -101,7 +101,7 @@
             label="Available from"
             name="available_from"
             type="date"
-            :value="old('dob', optional($employee_profile->available_from)->format('Y-m-d'))"
+            :value="old('available_from', optional($employee_profile->available_from)->format('Y-m-d'))"
 
         />
     </x-row>
