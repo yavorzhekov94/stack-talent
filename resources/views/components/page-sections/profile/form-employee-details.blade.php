@@ -1,5 +1,4 @@
 <x-forms.form method="PATCH" action="{{ route('employee.profile.update.details') }}">
-    <x-section-heading>Contact data</x-section-heading>
     <x-row>
         <h6>Gender</h6>
         <x-forms.radio
@@ -27,7 +26,7 @@
             label="DOB"
             name="dob"
             type="date"
-            :value="old('dob', optional($employeeProfile->dob)->format('Y-m-d'))"
+            :value="old('dob', \Carbon\Carbon::parse($employee_profile->dob)->format('Y-m-d'))"
         />
     </x-row>
 
@@ -36,7 +35,7 @@
             @foreach (config('countries') as $country_code => $country_name)
                 <option
                     value="{{ $country_code }}"
-                    @selected(old('country', $employeeProfile->country ?? '') === $country_code)
+                    @selected(old('country', $employee_profile->country ?? '') === $country_code)
                 >
                     {{ $country_name }}
                 </option>
@@ -95,14 +94,13 @@
         <x-forms.checkbox
             label="Is Employed"
             name="is_employed"
-            :checked="old('is_employed', $employee->is_employed ?? false)"
+            :checked="old('is_employed', $employee_profile->is_employed ?? false)"
         />
         <x-forms.input
             label="Available from"
             name="available_from"
             type="date"
-            :value="old('available_from', optional($employee_profile->available_from)->format('Y-m-d'))"
-
+            :value="old('available_from', \Carbon\Carbon::parse($employee_profile->available_from)->format('Y-m-d'))"
         />
     </x-row>
 
