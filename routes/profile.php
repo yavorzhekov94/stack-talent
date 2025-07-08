@@ -8,6 +8,7 @@ Route::prefix('employee')->name('employee.')->middleware('auth')->group(function
     Route::get('/profile', [EmployeeProfileController::class, 'create'])->name('profile');
     Route::patch('/profile/basic', [EmployeeProfileController::class, 'updateBasic'])->name('profile.update.basic');
     Route::patch('/profile/details', [EmployeeProfileController::class, 'updateDetails'])->name('profile.update.details');
+    Route::patch('/profile/password', [EmployeeProfileController::class, 'updatePassword'])->name('profile.update.password');
 });
 
 Route::prefix('employer')->name('employer.')->middleware('auth')->group(function () {

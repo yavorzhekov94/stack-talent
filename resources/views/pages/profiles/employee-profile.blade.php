@@ -31,6 +31,7 @@
                 </div>
             </div>
 
+            <x-divider />
             <div class="mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-2 cursor-pointer section-toggle" data-target="#details-section">
                     <x-section-heading>Details</x-section-heading>
@@ -45,16 +46,20 @@
                 </div>
             </div>
 
-            <div class="mb-4">
-                <div class="d-flex justify-content-between align-items-center mb-2 cursor-pointer section-toggle" data-target="#password-section">
-                    <x-section-heading>Change password</x-section-heading>
-                    <i class="bi bi-chevron-down toggle-icon"></i>
-                </div>
+            @if (is_null($user->google_id))
+                <x-divider />
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2 cursor-pointer section-toggle" data-target="#password-section">
+                        <x-section-heading>Change password</x-section-heading>
+                        <i class="bi bi-chevron-down toggle-icon"></i>
+                    </div>
 
-                <div id="password-section" class="collapse">
-                    @include('components.page-sections.profile.form-employee-password', ['user' => $user])
+                        <div id="password-section" class="collapse">
+                            @include('components.page-sections.profile.form-employee-password', ['user' => $user])
+                        </div>
+
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 </x-layout>

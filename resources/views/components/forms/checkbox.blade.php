@@ -5,8 +5,8 @@
         'type' => 'checkbox',
         'id' => $name,
         'name' => $name,
-        'value' => old($name),
-        'checked' => $checked
+        'value' => 1,
+        'checked' => (bool)old($name, $checked ?? false),
     ];
 
 @endphp

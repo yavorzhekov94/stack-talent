@@ -94,7 +94,7 @@
         <x-forms.checkbox
             label="Is Employed"
             name="is_employed"
-            :checked="old('is_employed', $employee_profile->is_employed ?? false)"
+            :checked="$employeeProfile->is_employed ?? false"
         />
         <x-forms.input
             label="Available from"

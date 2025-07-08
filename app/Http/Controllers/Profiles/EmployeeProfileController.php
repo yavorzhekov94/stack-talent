@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Profiles;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
 
 class EmployeeProfileController extends Controller
@@ -55,5 +56,21 @@ class EmployeeProfileController extends Controller
         );
         return back()->with('status', 'Details updated.');
 
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $password_rules = Password::min(8)->mixedCase()->numbers()->symbols();
+
+        $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed', $password_rules],
+        ]);
+
+        $request->user()->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return back()->with('status', 'Password updated.');
     }
 }
