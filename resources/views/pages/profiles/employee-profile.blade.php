@@ -46,6 +46,20 @@
                 </div>
             </div>
 
+            <x-divider />
+            <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2 cursor-pointer section-toggle" data-target="#documents-section">
+                    <x-section-heading>Documents</x-section-heading>
+                    <i class="bi bi-chevron-down toggle-icon"></i>
+                </div>
+
+                <div id="documents-section" class="collapse">
+                    @include('components.page-sections.profile.form-employee-documents', [
+                        'employeeProfile' => $employee_profile,
+                    ])
+                </div>
+            </div>
+
             @if (is_null($user->google_id))
                 <x-divider />
                 <div class="mb-4">
