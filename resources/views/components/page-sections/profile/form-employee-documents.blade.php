@@ -1,11 +1,19 @@
 <x-forms.form id="document-upload-form" enctype="multipart/form-data">
     <x-row>
-        <x-forms.input label="Document Type" name="file_type" required />
+        <x-forms.select label="Document Type" name="file_type" required >
+            @foreach (config('document_types') as $doc_code => $doc_name)
+                <option
+                    value="{{ $doc_code }}"
+                >
+                    {{ $doc_name }}
+                </option>
+            @endforeach
+        </x-forms.select>
         <x-forms.input label="File" name="file" type="file" required />
-        <div class="form-check mt-2">
-            <input class="form-check-input" type="checkbox" name="is_primary" id="is_primary">
-            <label class="form-check-label" for="is_primary">Primary</label>
-        </div>
+        <x-forms.checkbox
+            label="Primary"
+            name="is_primary"
+        />
     </x-row>
     <x-forms.button>Upload</x-forms.button>
 </x-forms.form>
