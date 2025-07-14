@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Profiles;
 
 use App\Http\Controllers\Controller;
 use App\Models\EmployeeDocument;
-use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class EmployeeDocumentController extends Controller
 {
     //
-    public function index(Response $response)
+    public function index()
     {
         $documents = auth()->user()->employee->documents;
-        return $response->json($documents);
+        return response()->json($documents);
     }
 
     public function store( Request $request)
