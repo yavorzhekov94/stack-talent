@@ -32,6 +32,7 @@ class EmployeeDocumentController extends Controller
             'employee_profile_id' => $employeeProfile->id,
             'file_type' => $request->file_type,
             'file_path' => $path,
+            'original_name' => $request->file('file')->getClientOriginalName(),
             'is_primary' => $request->has('is_primary'),
         ]);
 
@@ -51,5 +52,11 @@ class EmployeeDocumentController extends Controller
 
         return response()->json(['success' => true]);
 
+    }
+
+    public function download(string $id)
+    {
+        $document = EmployeeDocument::findOrFail($id);
+        return Storage::download($document->file_path, $document->original_name);
     }
 }

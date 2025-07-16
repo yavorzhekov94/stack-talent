@@ -19,6 +19,7 @@ Route::prefix('employer')->name('employer.')->middleware('auth')->group(function
 
 //Documents
 Route::middleware('auth')->group(function () {
+    Route::get('/documents/{id}/download', [EmployeeDocumentController::class, 'download'])->name('documents.download');
     Route::get('/documents', [EmployeeDocumentController::class, 'index']);
     Route::post('/documents', [EmployeeDocumentController::class, 'store']);
     Route::delete('/documents/{id}', [EmployeeDocumentController::class, 'destroy']);

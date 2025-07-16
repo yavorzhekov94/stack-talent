@@ -3,7 +3,7 @@
         <x-forms.select label="Document Type" name="file_type" required >
             @foreach (config('document_types') as $doc_code => $doc_name)
                 <option
-                    value="{{ $doc_code }}"
+                    value="{{ $doc_name }}"
                 >
                     {{ $doc_name }}
                 </option>

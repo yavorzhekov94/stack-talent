@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="border p-2 d-flex justify-content-between align-items-center">
                             <div>
                                 <strong>${doc.file_type}</strong> -
-                                <a href="/storage/${doc.file_path}" download>${fileName}</a>
+                                <a href="/documents/${doc.id}/download" target="_blank">
+                                    ${doc.original_name}
+                                </a>
                                 ${doc.is_primary ? '<span class="badge bg-primary ms-2">Primary</span>' : ''}
                             </div>
                             <button class="btn btn-sm btn-danger" data-id="${doc.id}">Delete</button>
