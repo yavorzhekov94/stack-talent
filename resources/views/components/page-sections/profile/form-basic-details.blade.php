@@ -1,4 +1,4 @@
-<x-forms.form method="PATCH" action="{{ route('employee.profile.update.basic') }}">
+<x-forms.form method="PATCH" action="{{ route('profile.update.basic') }}">
     <x-row>
         <x-forms.input
             label="Email"

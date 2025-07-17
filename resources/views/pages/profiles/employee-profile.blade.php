@@ -27,7 +27,7 @@
                     <i class="bi bi-chevron-down toggle-icon"></i>
                 </div>
                 <div id="basic-section" class="collapse">
-                    @include('components.page-sections.profile.form-employee-basic', ['user' => $user])
+                    @include('components.page-sections.profile.form-basic-details', ['user' => $user])
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                     </div>
 
                         <div id="password-section" class="collapse">
-                            @include('components.page-sections.profile.form-employee-password', ['user' => $user])
+                            @include('components.page-sections.profile.form-change-password', ['user' => $user])
                         </div>
 
                 </div>

@@ -14,20 +14,6 @@ class EmployeeProfileController extends Controller
         return view('pages.profiles.employee-profile');
     }
 
-    public function updateBasic(Request $request)
-    {
-        $user = auth()->user();
-
-        $request->validate([
-            'first_name' => ['required', 'max:255'],
-            'last_name' => ['required', 'max:255'],
-        ]);
-        $user->update($request->only(['first_name', 'last_name']));
-
-        return back()->with('status', 'Basic info updated.');
-
-    }
-
     public function updateDetails(Request $request)
     {
         $user = auth()->user();
@@ -58,19 +44,4 @@ class EmployeeProfileController extends Controller
 
     }
 
-    public function updatePassword(Request $request)
-    {
-        $password_rules = Password::min(8)->mixedCase()->numbers()->symbols();
-
-        $request->validate([
-            'current_password' => ['required', 'current_password'],
-            'password' => ['required', 'confirmed', $password_rules],
-        ]);
-
-        $request->user()->update([
-            'password' => Hash::make($request->password),
-        ]);
-
-        return back()->with('status', 'Password updated.');
-    }
 }

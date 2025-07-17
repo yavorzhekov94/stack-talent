@@ -12,8 +12,8 @@ class EmployerProfileController extends Controller
         return view('pages.profiles.employer-profile');
     }
 
-    public function store()
+    public function updateDetails(Request $request)
     {
-
+        $user = auth()->user();
     }
 }

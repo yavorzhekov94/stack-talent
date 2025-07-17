@@ -1,4 +1,4 @@
-<x-forms.form method="PATCH" action="{{route('employee.profile.update.password')}}">
+<x-forms.form method="PATCH" action="{{route('profile.update.password')}}">
     @push('scripts')
         @vite(['resources/js/pages/auth-toggle-password.js'])
     @endpush
