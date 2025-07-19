@@ -55,6 +55,30 @@
             {{ old('company_address', $employer_profile->company_address) }}
         </x-forms.textarea>
 
+        <x-forms.select label="Company Size" name="company_size" >
+            @foreach(config('company_size') as $com_size_code => $com_size_name)
+                <option
+                    value="{{ $com_size_code }}"
+                    @selected(old('education_level', $employee_profile->company_size ?? '') === $com_size_code)
+                >
+                    {{ $com_size_name }}
+                </option>
+            @endforeach
+        </x-forms.select>
+
+        <x-forms.input
+            type="url"
+            label="Company logo URL"
+            name="company_logo"
+            :value="old('company_logo', $employer_profile->company_logo)"
+        />
+
+        <x-forms.checkbox
+            label="Is Verified"
+            name="is_verified"
+            :checked="$employer_profile->is_verified ?? false"
+        />
+
     </x-row>
     <x-forms.button>Save</x-forms.button>
 </x-forms.form>
