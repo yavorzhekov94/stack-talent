@@ -40,7 +40,7 @@ class EmployeeProfileController extends Controller
                 ['gender', 'country', 'state', 'city', 'phone', 'experience', 'education_level', 'dob',
                     'available_from', 'is_employed', 'github_profile', 'linkedin_profile'])
         );
-        return back()->with('status', 'Details updated.');
+        return back()->with('status', 'Employee Details updated.');
 
     }
 
