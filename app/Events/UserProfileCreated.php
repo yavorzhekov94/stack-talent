@@ -11,12 +11,11 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserRegistered
+class UserProfileCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public User $user;
-
     /**
      * Create a new event instance.
      */

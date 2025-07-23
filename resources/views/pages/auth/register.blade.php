@@ -13,16 +13,16 @@
             {{-- Laravel Register Form --}}
             <x-forms.form method="POST" action="{{ route('register.store') }}">
 
-                <div class="row">
+                <x-row>
                     <x-forms.input label="First Name" name="first_name" required />
                     <x-forms.input label="Last Name" name="last_name" required />
-                </div>
+                </x-row>
                 <x-forms.input label="Email" name="email" type="email" required />
 
-                <div class="row">
+                <x-row>
                     <x-forms.input label="Password" name="password" type="password" required />
                     <x-forms.input label="Password Confirm" name="password_confirmation" type="password" />
-                </div>
+                </x-row>
 
                 <x-forms.select label="User Type" name="user_type" required>
                     <option value="employee">Employee</option>

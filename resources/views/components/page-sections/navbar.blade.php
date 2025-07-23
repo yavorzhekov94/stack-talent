@@ -31,7 +31,8 @@
                     <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                 @endguest
                 @auth
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+
+                    <li><a class="dropdown-item" href="{{ route(auth()->user()->user_type . '.profile') }}">Profile</a></li>
                     <li>
                         <x-forms.form method="DELETE" action="{{ route('logout') }}">
                             <x-forms.button class="dropdown-item">Log Out</x-forms.button>

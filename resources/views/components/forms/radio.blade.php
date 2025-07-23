@@ -1,13 +1,15 @@
-@props(['label', 'name', 'id'])
+@props(['label', 'name', 'id', 'checked' => ''])
 
 @php
     $defaults = [
         'type' => 'radio',
         'id' => $id,
         'name' => $name,
-        'value' => $id
+        'value' => $id,
+        'checked' => $checked
     ];
 
+    $name = $id;
 @endphp
 <div class="form-check">
     <input {{ $attributes->merge($defaults) }}>

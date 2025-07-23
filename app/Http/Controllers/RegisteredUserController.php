@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserProfileCreated;
 use App\Events\UserRegistered;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new UserRegistered($user));
+        event(new UserProfileCreated($user));
 
         return redirect()
             ->route('login')
