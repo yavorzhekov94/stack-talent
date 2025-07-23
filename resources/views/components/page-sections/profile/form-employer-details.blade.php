@@ -34,19 +34,24 @@
         <h6> Company information </h6>
 
         <x-forms.input
-            label="Compnany Name"
+            label="Company Name"
             name="company_name"
-            :value = "old('company_name', $employer_profile->company_name)"
+            :value="old('company_name', $employer_profile->company_name)"
         />
 
         <x-forms.textarea label="Company Description" name="company_description" rows="5">
             {{ old('company_description', $employer_profile->company_description) }}
         </x-forms.textarea>
 
-        <x-forms.input label="Company Email" name="company_email" type="email" />
+        <x-forms.input
+            label="Company Email"
+            name="company_email"
+            type="email"
+            :value="old('company_email', $employer_profile->company_email)"
+        />
 
         <x-forms.input
-            label="Compnany Website"
+            label="Company Website"
             name="company_website"
             :value = "old('company_website', $employer_profile->company_website)"
         />

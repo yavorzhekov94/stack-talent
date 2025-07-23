@@ -35,7 +35,8 @@ class EmployerProfileController extends Controller
             'is_verified'      => ['required', 'boolean'],
         ]);
 
-        $user->employee()->update(
+
+        $user->employer()->update(
             $request->only(
                 ['country', 'state', 'city', 'phone', 'company_name', 'company_address', 'company_description',
                     'company_email', 'company_size', 'company_logo', 'company_website', 'is_verified'])

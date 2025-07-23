@@ -1,6 +1,6 @@
 <x-layout>
     @push('scripts')
-        @vite(['resources/js/pages/profile/profile-sections.js', 'resources/js/pages/profile/profile-documents.js'])
+        @vite(['resources/js/pages/profile/profile-sections.js'])
     @endpush
     @if (session('status'))
         <x-alert type="success">
