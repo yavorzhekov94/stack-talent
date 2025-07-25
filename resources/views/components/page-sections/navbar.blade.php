@@ -31,8 +31,10 @@
                     <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                 @endguest
                 @auth
-
                     <li><a class="dropdown-item" href="{{ route(auth()->user()->user_type . '.profile') }}">Profile</a></li>
+                    @can('create', \App\Models\Category::class)
+                       <li><a href="{{ route('category.create') }}" class="dropdowm-item">Add category</a></li>
+                    @endcan
                     <li>
                         <x-forms.form method="DELETE" action="{{ route('logout') }}">
                             <x-forms.button class="dropdown-item">Log Out</x-forms.button>

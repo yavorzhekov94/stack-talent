@@ -13,4 +13,7 @@ require __DIR__.'/auth.php';
 //User profiles
 require __DIR__.'/profile.php';
 
+//Categories
+require __DIR__.'/category.php';
+
 
