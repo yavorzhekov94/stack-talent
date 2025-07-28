@@ -16,7 +16,7 @@ class CategoryPolicy
 
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     public function view(User $user, Category $category): bool

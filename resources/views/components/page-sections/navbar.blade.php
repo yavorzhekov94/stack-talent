@@ -32,7 +32,7 @@
                 @endguest
                 @auth
                     <li><a class="dropdown-item" href="{{ route(auth()->user()->user_type . '.profile') }}">Profile</a></li>
-                    @can('create', \App\Models\Category::class)
+                    @can('viewAny', \App\Models\Category::class)
                        <li><a href="{{ route('categories.index') }}" class="dropdown-item">Categories</a></li>
                     @endcan
                     <li>
