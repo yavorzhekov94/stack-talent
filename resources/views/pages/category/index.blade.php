@@ -1,6 +1,6 @@
 <x-layout>
     @push('scripts')
-        @vite(['resources/js/pages/category/update-categories.js'])
+        @vite(['resources/js/pages/category/delete-categories.js', 'resources/js/pages/category/add-categories.js'])
     @endpush
     <div class="container-fluid bg-light min-vh-100 py-5">
         <div class="register-card shadow-sm bg-white p-4 p-md-5 rounded">
