@@ -26,13 +26,17 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 const row = document.createElement('tr');
+                row.id = `category-row-${data.id}`;
                 row.innerHTML = `
                 <td>${data.name}</td>
                 <td>${data.slug}</td>
                 <td>${data.description ?? ''}</td>
                 <td><i class="${data.icon ?? ''}"></i></td>
                 <td><span class="badge ${data.is_active ? 'bg-success' : 'bg-secondary'}">${data.is_active ? 'Yes' : 'No'}</span></td>
-                <td class="text-end">—</td>
+                <td class="text-end">
+                    <button class="btn btn-sm btn-outline-primary edit-btn" data-id="${data.id}">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${data.id}">Delete</button>
+                </td>
             `;
 
                 document.getElementById('category-table').appendChild(row);
