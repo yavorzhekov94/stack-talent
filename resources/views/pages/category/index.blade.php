@@ -34,7 +34,8 @@
                             </td>
                             <td class="text-end">
                                 @can('update', $category)
-                                    <button class="btn btn-sm btn-outline-primary edit-btn" data-id="{{ $category->id }}" data-name="{{ $category->name }}" data-slug="{{ $category->slug }}" data-description="{{ $category->description }}" data-icon="{{ $category->icon }}" data-active="{{ $category->is_active }}">Edit</button>
+                                    <button class="btn btn-sm btn-outline-primary edit-btn" data-id="{{ $category->id }}" >Edit</button>
+                                    @include('pages.category.edit')
                                 @endcan
                                 @can('delete', $category)
                                     <button class="btn btn-sm btn-outline-danger delete-btn" data-id="{{ $category->id }}">Delete</button>
