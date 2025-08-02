@@ -1,6 +1,8 @@
 <x-layout>
     @push('scripts')
-        @vite(['resources/js/pages/category/delete-categories.js', 'resources/js/pages/category/add-categories.js'])
+        @vite(['resources/js/pages/category/delete-categories.js',
+                'resources/js/pages/category/add-categories.js',
+                'resources/js/pages/category/edit-categories.js'])
     @endpush
     <div class="container-fluid bg-light min-vh-100 py-5">
         <div class="register-card shadow-sm bg-white p-4 p-md-5 rounded">
@@ -34,8 +36,17 @@
                             </td>
                             <td class="text-end">
                                 @can('update', $category)
-                                    <button class="btn btn-sm btn-outline-primary edit-btn" data-id="{{ $category->id }}" >Edit</button>
-                                    @include('pages.category.edit')
+                                    <button
+                                        class="btn btn-sm btn-outline-primary edit-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editCategoryModal"
+                                        data-id="{{ $category->id }}"
+                                        data-name="{{ $category->name }}"
+                                        data-description="{{ $category->description }}"
+                                        data-icon="{{ $category->icon }}"
+                                        data-is_active="{{ $category->is_active }}">
+                                        Edit
+                                    </button>
                                 @endcan
                                 @can('delete', $category)
                                     <button class="btn btn-sm btn-outline-danger delete-btn" data-id="{{ $category->id }}">Delete</button>
@@ -55,5 +66,5 @@
             @endcan
         </div>
     </div>
-
+        @include('pages.category.edit')
 </x-layout>
