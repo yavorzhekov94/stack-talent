@@ -39,10 +39,18 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Category::class);
-        $categories = Category::orderBy('name')->get();
+
+        if ($request->ajax()) {
+            $categories = Category::orderBy('name')->paginate(5); // брой по избор
+            return response()->json([
+                'html' => view('components.page-sections.category.table', compact('categories'))->render()
+            ]);
+        }
+
+        $categories = Category::orderBy('name')->paginate(5);
         return view('pages.category.index', compact('categories'));
     }
 
