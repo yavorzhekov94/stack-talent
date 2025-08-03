@@ -24,7 +24,7 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:1024'],
-            'icon' => ['nullable', 'string', '255'],
+            'icon' => ['nullable', 'string', 'max:255'],
             'is_active' => ['required', 'boolean'],
         ]);
 
@@ -55,13 +55,23 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
+        $request->merge([
+            'is_active' => $request->has('is_active') ? 1 : 0
+        ]);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'description' => ['nullable', 'string', 'max:1024'],
+            'icon' => ['nullable', 'string', 'max:255'],
+            'is_active' => ['required', 'boolean'],
         ]);
 
         $category->update([
             'name' => $validated['name'],
+            'description' => $validated['description'],
             'slug' => Str::slug($validated['name']),
+            'icon' => $validated['icon'],
+            'is_active' => $validated['is_active'],
         ]);
 
         return response()->json($category);

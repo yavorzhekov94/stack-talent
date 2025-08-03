@@ -7,7 +7,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <x-forms.form id="edit-category-form" method="PATCH">
+                <x-forms.form id="edit-category-form"
+                              method="PATCH"
+                              data-method="POST">
                     <input type="hidden" name="id" id="edit-id">
                     <x-row>
                         <x-forms.input label="Category name" name="name" id="edit-name" required />

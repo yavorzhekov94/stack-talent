@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         throw new Error(data.message || 'Failed to add category.');
                     });
                 }
-                return response.json(); // 👈 важно: тук взимаме `data`
+                return response.json();
             })
             .then(data => {
                 const row = document.createElement('tr');
@@ -31,10 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${data.name}</td>
                 <td>${data.slug}</td>
                 <td>${data.description ?? ''}</td>
-                <td><i class="${data.icon ?? ''}"></i></td>
+                <td><i class="${data.icon ?? ''}"></i>${data.icon ?? ''}</td>
                 <td><span class="badge ${data.is_active ? 'bg-success' : 'bg-secondary'}">${data.is_active ? 'Yes' : 'No'}</span></td>
                 <td class="text-end">
-                    <button class="btn btn-sm btn-outline-primary edit-btn" data-id="${data.id}">Edit</button>
+                    <button class="btn btn-sm btn-outline-primary edit-btn"
+                                data-id="${data.id}"
+                                data-name="${data.name}"
+                                data-description="${data.description ?? ''}"
+                                data-icon="${data.icon ?? ''}"
+                                data-is_active="${data.is_active ? 1 : 0}">Edit</button>
                     <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${data.id}">Delete</button>
                 </td>
             `;

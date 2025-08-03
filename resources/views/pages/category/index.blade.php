@@ -26,7 +26,7 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
                             <td>{{ $category->description }}</td>
-                            <td><i class="{{ $category->icon }}"></i></td>
+                            <td><i class="{{ $category->icon }}"></i>{{ $category->icon }}</td>
                             <td>
                                 @if($category->is_active)
                                     <span class="badge bg-success">Yes</span>
