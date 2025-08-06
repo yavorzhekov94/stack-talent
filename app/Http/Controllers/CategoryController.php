@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $this->authorize('viewAny', Category::class);
 
         if ($request->ajax()) {
-            $categories = Category::orderBy('name')->paginate(5); // брой по избор
+            $categories = Category::orderBy('name')->paginate(5);
             return response()->json([
                 'html' => view('components.page-sections.category.table', compact('categories'))->render()
             ]);

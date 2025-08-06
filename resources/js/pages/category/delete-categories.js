@@ -1,4 +1,4 @@
-document.getElementById('category-table').addEventListener('click', function (e) {
+document.addEventListener('click', function (e) {
     if (e.target.classList.contains('delete-btn')) {
         const categoryId = e.target.dataset.id;
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

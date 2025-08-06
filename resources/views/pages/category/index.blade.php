@@ -9,9 +9,7 @@
         <div class="register-card shadow-sm bg-white p-4 p-md-5 rounded">
             <x-page-heading>All Categories</x-page-heading>
 
-            <div id="category-container" class="table-responsive">
-                @include('components.page-sections.category.table', ['categories' => $categories])
-            </div>
+            @include('components.page-sections.category.table', ['categories' => $categories])
 
             @can('create', \App\Models\Category::class)
                 <div class="text-end mt-4">

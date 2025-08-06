@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const table = document.getElementById('category-table');
     const form = document.getElementById('edit-category-form');
 
-    // send data to modal
-    table.addEventListener('click', function (e) {
+    document.addEventListener('click', function (e) {
         if (e.target.classList.contains('edit-btn')) {
             const button = e.target;
             const modal = document.getElementById('editCategoryModal');
@@ -14,77 +12,79 @@ document.addEventListener('DOMContentLoaded', function () {
             const icon = button.dataset.icon;
             const isActive = button.dataset.is_active === '1';
 
-            const method =
+            form.action = `/categories/${id}`;
+            form.dataset.method = 'POST'; // или 'PUT' ако Laravel очаква PUT
 
-            modal.querySelector('form').action = `/categories/${id}`;
-            modal.querySelector('[name="name"]').value = name;
-            modal.querySelector('[name="description"]').value = description ?? '';
-            modal.querySelector('[name="icon"]').value = icon ?? '';
-            modal.querySelector('[name="is_active"]').checked = isActive;
+            form.querySelector('[name="name"]').value = name;
+            form.querySelector('[name="description"]').value = description ?? '';
+            form.querySelector('[name="icon"]').value = icon ?? '';
+            form.querySelector('[name="is_active"]').checked = isActive;
 
-            // fetch(`/categories/${id}` {
-            //     method:
-            // })
+            const bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
         }
     });
 
-    //Update category async logic
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const formMethod = form.dataset.method;
-        console.log(formMethod);
-
+        const method = form.dataset.method || 'POST';
+        const url = form.getAttribute('action');
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         const formData = new FormData(form);
-        console.log(formData.get('icon'));
-        const url = form.getAttribute('action');
 
-        fetch (url, {
-           method:  formMethod,
-           headers: {
+        fetch(url, {
+            method: method,
+            headers: {
                 'X-CSRF-TOKEN': csrfToken,
                 'Accept': 'application/json'
-           },
+            },
             body: formData
-        }).then(response => {
-            if (!response.ok) throw response;
-            return response.json();
-        }).then(data => {
-            const row = document.getElementById(`category-row-${data.id}`);
-            if (row) {
-                row.innerHTML = `
-                    <td>${data.name}</td>
-                    <td>${data.slug}</td>
-                    <td>${data.description ?? ''}</td>
-                    <td><i class="${data.icon ?? ''}"></i>${data.icon ?? ''}</td>
-                    <td><span class="badge ${data.is_active ? 'bg-success' : 'bg-secondary'}">${data.is_active ? 'Yes' : 'No'}</span></td>
-                    <td class="text-end">
-                        <button class="btn btn-sm btn-outline-primary edit-btn"
-                                data-id="${data.id}"
-                                data-name="${data.name}"
-                                data-description="${data.description ?? ''}"
-                                data-icon="${data.icon ?? ''}"
-                                data-is_active="${data.is_active ? 1 : 0}">
-                            Edit
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${data.id}">Delete</button>
-                    </td>
-                `;
-            }
+        })
+            .then(response => {
+                if (!response.ok) throw response;
+                return response.json();
+            })
+            .then(data => {
+                const row = document.getElementById(`category-row-${data.id}`);
+                if (row) {
+                    row.innerHTML = `
+                        <td>${data.name}</td>
+                        <td>${data.slug}</td>
+                        <td>${data.description ?? ''}</td>
+                        <td><i class="${data.icon ?? ''}"></i>${data.icon ?? ''}</td>
+                        <td><span class="badge ${data.is_active ? 'bg-success' : 'bg-secondary'}">${data.is_active ? 'Yes' : 'No'}</span></td>
+                        <td class="text-end">
+                            <button class="btn btn-sm btn-outline-primary edit-btn"
+                                    data-id="${data.id}"
+                                    data-name="${data.name}"
+                                    data-description="${data.description ?? ''}"
+                                    data-icon="${data.icon ?? ''}"
+                                    data-is_active="${data.is_active ? 1 : 0}">
+                                Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger delete-btn" data-id="${data.id}">Delete</button>
+                        </td>
+                    `;
+                }
 
-            const modal = bootstrap.Modal.getInstance(document.getElementById('editCategoryModal'));
-            modal.hide();
-
-        }).catch(async (error) => {
-            if (error.json) {
-                const data = await error.json();
-                alert(data.message || 'Update failed.');
-            } else {
-                console.error('Error:', error);
-                alert('Something went wrong.');
-            }
-        });
+                const modalInstance = bootstrap.Modal.getInstance(document.getElementById('editCategoryModal'));
+                modalInstance.hide();
+                
+                setTimeout(() => {
+                    document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                    document.body.classList.remove('modal-open');
+                    document.body.style.paddingRight = '';
+                }, 500);
+            })
+            .catch(async (error) => {
+                if (error.json) {
+                    const data = await error.json();
+                    alert(data.message || 'Update failed.');
+                } else {
+                    console.error('Update error:', error);
+                    alert('Something went wrong.');
+                }
+            });
     });
-
 });

@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (e) {
-        if (e.target.tagName === 'A' && e.target.closest('.pagination')) {
+        const link = e.target.closest('a.page-link');
+
+        if (link && link.closest('.pagination')) {
             e.preventDefault();
-            const url = e.target.getAttribute('href');
+            const url = link.getAttribute('href');
 
             fetch(url, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             })
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const newTable = doc.querySelector('#category-container');
-                    document.querySelector('#category-container').innerHTML = newTable.innerHTML;
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.querySelector('#category-container');
+                    container.innerHTML = data.html;
                 })
                 .catch(error => console.error('Pagination error:', error));
         }
