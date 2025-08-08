@@ -10,3 +10,4 @@ class Tag extends Model
         return $this->belongsToMany(JobPost::class);
     }
 }
+

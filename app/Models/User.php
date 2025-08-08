@@ -41,7 +41,9 @@ class User extends Authenticatable
        return $this->hasOne(EmployerProfile::class);
     }
 
-    public function jobs() {}
+    public function jobPosts() {
+       return $this->hasMany(JobPost::class);
+    }
 
     /**
      * Get the attributes that should be cast.

@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const modalInstance = bootstrap.Modal.getInstance(document.getElementById('editCategoryModal'));
                 modalInstance.hide();
-                
+
                 setTimeout(() => {
                     document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
                     document.body.classList.remove('modal-open');
