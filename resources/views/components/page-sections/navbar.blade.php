@@ -44,7 +44,9 @@
             </ul>
         </div>
         @auth
-            <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+            @can('create', \App\Models\JobPost::class)
+                <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+            @endcan
         @endauth
     </div>
 </nav>

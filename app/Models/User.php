@@ -44,7 +44,6 @@ class User extends Authenticatable
     public function jobPosts() {
        return $this->hasMany(JobPost::class);
     }
-
     /**
      * Get the attributes that should be cast.
      *
