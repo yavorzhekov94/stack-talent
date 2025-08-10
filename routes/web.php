@@ -18,4 +18,7 @@ require __DIR__.'/profile.php';
 //Categories
 require __DIR__.'/category.php';
 
+//JObs
+require __DIR__.'/job-posts.php';
+
 

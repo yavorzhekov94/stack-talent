@@ -35,6 +35,9 @@
                     @can('viewAny', \App\Models\Category::class)
                        <li><a href="{{ route('categories.index') }}" class="dropdown-item">Categories</a></li>
                     @endcan
+                        @can('viewAny', \App\Models\JobPost::class)
+                            <li><a href="{{ route('jobs.index') }}" class="dropdown-item">Jobs</a></li>
+                        @endcan
                     <li>
                         <x-forms.form method="DELETE" action="{{ route('logout') }}">
                             <x-forms.button class="dropdown-item">Log Out</x-forms.button>
@@ -45,7 +48,7 @@
         </div>
         @auth
             @can('create', \App\Models\JobPost::class)
-                <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+                <a href="{{ route('jobs.create') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
             @endcan
         @endauth
     </div>
