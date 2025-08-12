@@ -12,7 +12,12 @@ class JobPostPolicy
 
     public function viewAny(?User $user): bool
     {
-        return $user?->user_type === 'employer';
+        return true;
+    }
+
+    public function viewMine(User $user): bool
+    {
+        return $user->user_type === 'employer';
     }
 
     public function view(?User $user, JobPost $jobPost): bool

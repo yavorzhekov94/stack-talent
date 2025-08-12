@@ -12,7 +12,7 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <x-navbar-link href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-navbar-link>
             <x-navbar-link href="{{ route('about') }}" :active="request()->routeIs('about')">About</x-navbar-link>
-            <x-navbar-link href="{{ route('jobs') }}" :active="request()->routeIs('jobs')">Jobs</x-navbar-link>
+            <x-navbar-link href="{{ route('jobs.index') }}" :active="request()->routeIs('jobs.index')">Jobs</x-navbar-link>
             <x-navbar-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">Contact</x-navbar-link>
         </div>
         <div class="dropdown">
@@ -35,9 +35,11 @@
                     @can('viewAny', \App\Models\Category::class)
                        <li><a href="{{ route('categories.index') }}" class="dropdown-item">Categories</a></li>
                     @endcan
-                        @can('viewAny', \App\Models\JobPost::class)
-                            <li><a href="{{ route('jobs.index') }}" class="dropdown-item">Jobs</a></li>
-                        @endcan
+                    @can('viewMine', \App\Models\JobPost::class)
+                       <li>
+                           <a href="{{ route('jobs.myPosts') }}" class="dropdown-item">My Jobs</a>
+                       </li>
+                    @endcan
                     <li>
                         <x-forms.form method="DELETE" action="{{ route('logout') }}">
                             <x-forms.button class="dropdown-item">Log Out</x-forms.button>

@@ -16,8 +16,38 @@ class JobPostController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny', JobPost::class);
+
         return view('pages.jobs.index');
+
+    }
+
+    public function show(string $job)
+    {
+
+    }
+
+    public function myPosts()
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function edit(string $job)
+    {
+
+    }
+
+    public function update(string $job)
+    {
+
+    }
+
+    public function destroy(string $job)
+    {
 
     }
 }

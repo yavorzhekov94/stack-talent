@@ -1,3 +1,4 @@
 <x-layout>
-    <h1> Jobs </h1>
+    <x-page-sections.breadcrumbs />
+    <x-page-sections.jobs />
 </x-layout>
