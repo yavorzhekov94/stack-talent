@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\JobPosts;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\JobPost;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -11,7 +12,8 @@ class JobPostController extends Controller
     use AuthorizesRequests;
     public function create()
     {
-        return view('pages.jobs.create');
+        $categories = Category::orderBy('name')->get(['id', 'name']);
+        return view('pages.jobs.create', compact('categories'));
     }
 
     public function index()
