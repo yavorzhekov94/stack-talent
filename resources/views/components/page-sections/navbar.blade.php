@@ -1,5 +1,7 @@
 @php
- use Illuminate\Support\Str;
+    use App\Models\Category;
+    use App\Models\JobPost;
+    use Illuminate\Support\Str;
 @endphp
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
     <a href="/" class="navbar-brand d-flex align-items-center text-center py-0 px-4 px-lg-5">
@@ -12,7 +14,8 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <x-navbar-link href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-navbar-link>
             <x-navbar-link href="{{ route('about') }}" :active="request()->routeIs('about')">About</x-navbar-link>
-            <x-navbar-link href="{{ route('jobs.index') }}" :active="request()->routeIs('jobs.index')">Jobs</x-navbar-link>
+            <x-navbar-link href="{{ route('jobs.index') }}" :active="request()->routeIs('jobs.index')">Jobs
+            </x-navbar-link>
             <x-navbar-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">Contact</x-navbar-link>
         </div>
         <div class="dropdown">
@@ -31,14 +34,15 @@
                     <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
                 @endguest
                 @auth
-                    <li><a class="dropdown-item" href="{{ route(auth()->user()->user_type . '.profile') }}">Profile</a></li>
-                    @can('viewAny', \App\Models\Category::class)
-                       <li><a href="{{ route('categories.index') }}" class="dropdown-item">Categories</a></li>
+                    <li><a class="dropdown-item" href="{{ route(auth()->user()->user_type . '.profile') }}">Profile</a>
+                    </li>
+                    @can('viewAny', Category::class)
+                        <li><a href="{{ route('categories.index') }}" class="dropdown-item">Categories</a></li>
                     @endcan
-                    @can('viewMine', \App\Models\JobPost::class)
-                       <li>
-                           <a href="{{ route('jobs.myPosts') }}" class="dropdown-item">My Jobs</a>
-                       </li>
+                    @can('viewMine', JobPost::class)
+                        <li>
+                            <a href="{{ route('jobs.myPosts') }}" class="dropdown-item">My Jobs</a>
+                        </li>
                     @endcan
                     <li>
                         <x-forms.form method="DELETE" action="{{ route('logout') }}">
@@ -49,8 +53,9 @@
             </ul>
         </div>
         @auth
-            @can('create', \App\Models\JobPost::class)
-                <a href="{{ route('jobs.create') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+            @can('create', JobPost::class)
+                <a href="{{ route('jobs.create') }}" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post
+                    A Job<i class="fa fa-arrow-right ms-3"></i></a>
             @endcan
         @endauth
     </div>
