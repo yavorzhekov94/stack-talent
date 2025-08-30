@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobPost extends Model
 {
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     public function category() {
         return $this->belongsTo(Category::class);
     }

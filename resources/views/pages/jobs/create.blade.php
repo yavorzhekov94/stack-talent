@@ -18,6 +18,11 @@
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </x-forms.select>
+                <x-forms.input
+                    label="Tags (comma separated)"
+                    name="tags_csv"
+                    placeholder="e.g. php, laravel, linux"
+                />
                 <x-forms.select label="Job type" name="type" >
                     @foreach(config('job_type') as $job_type_code => $job_type_name)
                         <option

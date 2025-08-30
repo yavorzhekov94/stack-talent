@@ -1,3 +1,6 @@
+@props([
+    'bodyClass' => str_replace('.', '-', Route::currentRouteName() ?? '')
+])
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/css/owl.theme.green.min.css') }}">
     @vite(['resources/js/app.js', 'resources/scss/app.scss'])
 </head>
-<body>
+<body class="{{ $bodyClass }}">
     <div class="container-xxl bg-white p-0">
         <x-page-sections.spinner />
         <x-page-sections.navbar />
