@@ -18,7 +18,8 @@ class JobPostController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name')->get(['id', 'name']);
-        return view('pages.jobs.create', compact('categories'));
+        $tagSuggestions = Tag::orderBy('name')->pluck('name');
+        return view('pages.jobs.create', compact('categories', 'tagSuggestions'));
     }
 
     public function index()
@@ -97,8 +98,9 @@ class JobPostController extends Controller
 
     }
 
-    public function destroy(string $job)
+    public function destroy(JobPost $job)
     {
-
+        $job->delete();
+        return redirect()->route('jobs.index');
     }
 }

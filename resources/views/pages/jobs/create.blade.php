@@ -1,4 +1,7 @@
 <x-layout>
+    @push('scripts')
+        @vite(['resources/js/pages/jobs/jobs-create.js'])
+    @endpush
     <div class="container">
         <x-section-heading> Create new job</x-section-heading>
         <x-forms.form
@@ -23,6 +26,9 @@
                     name="tags_csv"
                     placeholder="e.g. php, laravel, linux"
                 />
+                <script id="tag-suggestions" type="application/json">
+                    @json($tagSuggestions)
+                </script>
                 <x-forms.select label="Job type" name="type" >
                     @foreach(config('job_type') as $job_type_code => $job_type_name)
                         <option
